@@ -1,0 +1,21 @@
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\bin\Debug\крестики нолики.exe.config
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\bin\Debug\крестики нолики.exe
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\bin\Debug\крестики нолики.pdb
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\obj\Debug\крестики нолики.csprojAssemblyReference.cache
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\obj\Debug\крестики_нолики.Form1.resources
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\obj\Debug\крестики_нолики.Properties.Resources.resources
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\obj\Debug\крестики нолики.csproj.GenerateResource.cache
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\obj\Debug\крестики нолики.csproj.CoreCompileInputs.cache
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\obj\Debug\крестики нолики.exe
+C:\Users\m2010019\Desktop\крестики нолики\крестики нолики\obj\Debug\крестики нолики.pdb
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\bin\Debug\крестики нолики.exe.config
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\bin\Debug\крестики нолики.exe
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\bin\Debug\крестики нолики.pdb
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики нолики.csprojAssemblyReference.cache
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики_нолики.Form1.resources
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики_нолики.Properties.Resources.resources
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики нолики.csproj.GenerateResource.cache
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики нолики.csproj.CoreCompileInputs.cache
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики нолики.exe
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики нолики.pdb
+Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики_нолики.helloForm.resources

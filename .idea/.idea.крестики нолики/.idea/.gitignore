@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/projectSettingsUpdater.xml
+/.idea.крестики нолики.iml
+/contentModel.xml
+# Datasource local storage ignored files
+/../../../../../../../:\Унивенр\ООП мои файлы\крестики нолики\.idea\.idea.крестики нолики\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
