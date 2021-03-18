@@ -19,3 +19,14 @@ Z:\Унивенр\ООП мои файлы\крестики нолики\кре�
 Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики нолики.exe
 Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики нолики.pdb
 Z:\Унивенр\ООП мои файлы\крестики нолики\крестики нолики\obj\Debug\крестики_нолики.helloForm.resources
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\bin\Debug\крестики нолики.exe.config
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\bin\Debug\крестики нолики.exe
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\bin\Debug\крестики нолики.pdb
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\obj\Debug\крестики нолики.csprojAssemblyReference.cache
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\obj\Debug\крестики_нолики.Form1.resources
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\obj\Debug\крестики_нолики.helloForm.resources
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\obj\Debug\крестики_нолики.Properties.Resources.resources
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\obj\Debug\крестики нолики.csproj.GenerateResource.cache
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\obj\Debug\крестики нолики.csproj.CoreCompileInputs.cache
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\obj\Debug\крестики нолики.exe
+C:\Users\numva\RiderProjects\tic-tac-tone\крестики нолики\obj\Debug\крестики нолики.pdb

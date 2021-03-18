@@ -16,10 +16,12 @@ namespace крестики_нолики
         static float xstart = 50, ystart = 50, step = 50;
         //"поля" с отметками ходов
         public int[,] littleMap = new int [3, 3];
+        public static int[,] bigMap = new int[10, 10];
 
-        public static int[,] bigMap = new int[10, 10]; 
+        public static int[,] winComb = new int[5, 5];
         //переменная определяет чей сейчас ход: true - крестики, false - нолики
         bool turn = true;
+        
         public bool isplaying = false;
 
         public Form1()
@@ -58,7 +60,12 @@ namespace крестики_нолики
                             MessageBox.Show("Клетка занята, выберите другую!");
                         }
                     }
-                    checkWin(turn);
+                    if (checkWin(1))
+                    {
+                        MessageBox.Show("Победа 1 игрока");
+                    
+                    }
+                    if (checkWin(2)) MessageBox.Show("Победа 2 игрока");
                     Invalidate();
                 }
                 
@@ -67,10 +74,6 @@ namespace крестики_нолики
 
         public void Form1_Paint(object sender, PaintEventArgs e)
         {
-            
-            if (isplaying)
-            {
-                MessageBox.Show("Работает...");
                 Graphics g = this.CreateGraphics();
                 //рисуем поле 
                 for (int i = 50; i <= 550; i+=50)
@@ -96,14 +99,9 @@ namespace крестики_нолики
                         
                         }
                     }
-                }    
-            }
-            else
-            {
-                Graphics g = this.CreateGraphics();
-                g.DrawLine(new Pen(Color.Black, 2f), 1, 1, 2, 2);
-            }
-            
+                }
+
+                
         }
 
         public void drawMap(int[,] Map)
@@ -119,49 +117,54 @@ namespace крестики_нолики
         }
         
         // проверка победителя 
-        private static bool checkWin(bool  cl)
+        private static bool checkWin(int c)
         {
-            int c;
-            if (cl)
-            {
-                c = 1;
-            }
-            else if (cl == false);
-            {
-                c = 2;
-            }
-            
-            for (int i = 0; i < 10; i++) {// ползём по всему полю
+            for (int i = 0; i < 10; i++) {  // ползём по всему полю
                 for (int j = 0; j < 10; j++) {
-                    if (checkLine(i, j, 1, 0, 5, c)) return true;   // проверим линию по х 
-                    if (checkLine(i, j, 1, 1, 5, c)) return true;   // проверим по диагонали х у
-                    if (checkLine(i, j, 0, 1, 5, c)) return true;   // проверим линию по у
-                    if (checkLine(i, j, 1, -1, 5, c)) return true;  // проверим по диагонали х -у
+                    if (i <= 6) 
+                    {
+                        if (checkLine(i, j, 1, 0, c)) 
+                        {
+                            
+                            return true;   // проверим линию по х 
+                        }
+                    }
+                    if (i <= 5 && j <= 5) 
+                    {
+                        if (checkLine(i, j, 1, 1, c)) 
+                        {
+                            return true;   // проверим по диагонали
+                        } 
+                    }
+                    if (j <=6) 
+                    {
+                        if(checkLine(i, j, 0, 1, c)) 
+                        {
+                            return true;   // проверим линию по у
+                        } 
+                    }
+                    if(i >= 5 && j <= 6 ) 
+                    {
+                        if (checkLine(i, j, 1, -1,  c)) 
+                        {
+                            return true;  // проверим по диагонали х -у 
+                        }
+                    }
                 }
             }
             return false;
         }
         
         // проверка линии
-        private static bool checkLine(int x, int y, int vx, int vy, int len, int c) {
-            int far_x = x + (len - 1) * vx;           // посчитаем конец проверяемой линии
+        private static bool checkLine(int x, int y, int vx, int vy, int c)
+        {
+            int len = 5;
+            int far_x = x + (len - 1) * vx;             // посчитаем конец проверяемой линии
             int far_y = y + (len - 1) * vy;
-            if ((far_x < (bigMap.GetLength(0) - 1)) && (far_y < (bigMap.GetLength(1) - 1))
-                && (far_x >= 0) && (far_y >= 0)) // проверим не выйдет-ли проверяемая линия за пределы поля
-            {
-                return false;
-            }
-            
-            for (int i = 0; i < len; i++) {                 // ползём по проверяемой линии
+            for (int i = 0; i < len; i++) {              // ползём по проверяемой линии
                 if (bigMap[(x + i * vx),(y + i * vy)] != c) return false;   // проверим одинаковые-ли символы в ячейках
             }
             return true;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            helloForm F2 = new helloForm();
-            F2.Show();
         }
     }
 
