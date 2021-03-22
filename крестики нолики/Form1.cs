@@ -121,34 +121,21 @@ namespace крестики_нолики
         {
             for (int i = 0; i < 10; i++) {  // ползём по всему полю
                 for (int j = 0; j < 10; j++) {
-                    if (i <= 6) 
+                    if (i <= 5) 
                     {
-                        if (checkLine(i, j, 1, 0, c)) 
-                        {
-                            
-                            return true;   // проверим линию по х 
-                        }
+                        if (checkLine(i, j, 1, 0, c)) return true;   // проверим линию по х 
                     }
                     if (i <= 5 && j <= 5) 
                     {
-                        if (checkLine(i, j, 1, 1, c)) 
-                        {
-                            return true;   // проверим по диагонали
-                        } 
+                        if (checkLine(i, j, 1, 1, c))  return true;   // проверим по диагонали
                     }
-                    if (j <=6) 
+                    if (j <=5) 
                     {
-                        if(checkLine(i, j, 0, 1, c)) 
-                        {
-                            return true;   // проверим линию по у
-                        } 
+                        if(checkLine(i, j, 0, 1, c)) return true;   // проверим линию по у
                     }
-                    if(i >= 5 && j <= 6 ) 
+                    if(i <= 5 && j >= 5 ) 
                     {
-                        if (checkLine(i, j, 1, -1,  c)) 
-                        {
-                            return true;  // проверим по диагонали х -у 
-                        }
+                        if (checkLine(i, j, 1, -1,  c)) return true;  // проверим по диагонали х -у
                     }
                 }
             }
@@ -159,10 +146,8 @@ namespace крестики_нолики
         private static bool checkLine(int x, int y, int vx, int vy, int c)
         {
             int len = 5;
-            int far_x = x + (len - 1) * vx;             // посчитаем конец проверяемой линии
-            int far_y = y + (len - 1) * vy;
             for (int i = 0; i < len; i++) {              // ползём по проверяемой линии
-                if (bigMap[(x + i * vx),(y + i * vy)] != c) return false;   // проверим одинаковые-ли символы в ячейках
+                if (bigMap[(y + i * vy),(x + i * vx)] != c) return false;   // проверим одинаковые-ли символы в ячейках
             }
             return true;
         }
