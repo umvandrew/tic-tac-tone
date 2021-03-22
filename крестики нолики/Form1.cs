@@ -18,12 +18,13 @@ namespace крестики_нолики
         public int[,] littleMap = new int [3, 3];
         public static int[,] bigMap = new int[10, 10];
 
-        public static int[,] winComb = new int[5, 5];
-        //переменная определяет чей сейчас ход: true - крестики, false - нолики
-        bool turn = true;
-        
-        public bool isplaying = false;
+        public static int[,] winComb = new int[5, 2]; //начальная и конечная точка выйгрышной комбинации 
 
+        public static int[] countWin = new int[] {0,0};
+        //переменная определяет чей сейчас ход: true - крестики, false - нолики
+        public bool turn = true;
+        public bool isPlaying = false;
+        
         public Form1()
         {
             InitializeComponent();
@@ -36,39 +37,36 @@ namespace крестики_нолики
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < 10; i++)
+            if (isPlaying) 
             {
-                for(int j = 0; j < 10; j++)
+                for (int i = 0; i < 10; i++)
                 {
-                    if ((e.X > xstart + i * step) && (e.X < xstart + (i + 1) * step) && (e.Y > ystart + j * step) && (e.Y < ystart + (j + 1) * step))
+                    for(int j = 0; j < 10; j++)
                     {
-                        if ((bigMap[i,j]!=1)&& (bigMap[i, j] != 2))
+                        if ((e.X > xstart + i * step) && (e.X < xstart + (i + 1) * step) && (e.Y > ystart + j * step) && (e.Y < ystart + (j + 1) * step))
                         {
-                            if (turn)
+                            if ((bigMap[i,j]!=1)&& (bigMap[i, j] != 2))
                             {
-                                bigMap[i, j] = 1;
-                                turn = false;
+                                if (turn)
+                                {
+                                    bigMap[i, j] = 1;
+                                    turn = false;
+                                }
+                                else if (turn == false)
+                                {
+                                    bigMap[i, j] = 2;
+                                    turn = true;
+                                }
                             }
-                            else if (turn == false)
+                            else
                             {
-                                bigMap[i, j] = 2;
-                                turn = true;
+                                MessageBox.Show("Клетка занята, выберите другую!");
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Клетка занята, выберите другую!");
-                        }
+                        Invalidate();
                     }
-                    if (checkWin(1))
-                    {
-                        MessageBox.Show("Победа 1 игрока");
-                    
-                    }
-                    if (checkWin(2)) MessageBox.Show("Победа 2 игрока");
-                    Invalidate();
-                }
                 
+                }
             }
         }
 
@@ -83,38 +81,86 @@ namespace крестики_нолики
                 }
 
                 //рисуем крестик, если клик мышкой был
-                for (int i = 0; i < 10; i++)
+                if (isPlaying)
                 {
-                    for ( int j = 0; j < 10; j++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        if (bigMap[i,j]==1)
+                        for ( int j = 0; j < 10; j++)
                         {
-                            g.DrawLine(new Pen(Color.Black, 2f), xstart + 5 + i * step, ystart + 5 + j * step, xstart + 5 + i * step + 40, ystart + 5 + j * step + 40);
-                            g.DrawLine(new Pen(Color.Black, 2f), xstart + 5 + i * step, ystart + 5 + j * step + 40, xstart + 5 + i * step +40, ystart + 5 + j * step );
+                            if (bigMap[i,j]==1)
+                            {
+                                g.DrawLine(new Pen(Color.Black, 2f), xstart + 5 + i * step, ystart + 5 + j * step, xstart + 5 + i * step + 40, ystart + 5 + j * step + 40);
+                                g.DrawLine(new Pen(Color.Black, 2f), xstart + 5 + i * step, ystart + 5 + j * step + 40, xstart + 5 + i * step +40, ystart + 5 + j * step );
                         
-                        }
-                        if (bigMap[i, j] == 2)
-                        {
-                            g.DrawEllipse(new Pen(Color.Red, 2f), xstart + 5 + i * step, ystart + 5 + j * step, 40, 40);
+                            }
+                            if (bigMap[i,j] == 2)
+                            {
+                                g.DrawEllipse(new Pen(Color.Red, 2f), xstart + 5 + i * step, ystart + 5 + j * step, 40, 40);
                         
+                            }
                         }
                     }
                 }
+                
+                //проверка на победу 
+                for (int c = 1; c <= 2 ; c++)
+                {
+                    if (checkWin(c))
+                    {
+                        g.DrawLine(new Pen(Color.Orange, 5f), xstart + 25 + (winComb[0, 0] * step), ystart + 25 + (winComb[0, 1] * step), 
+                            xstart + 25 + (winComb[4, 0] * step), ystart + 25 + (winComb[4, 1] * step ));
 
+                        ClearMap();
+                    
+                        countWin[c-1] += 1;
+                        MessageBox.Show("Победа "+c+" игрока") ;
+                        if (c == 1) textBox1.Text = (countWin[0]).ToString();
+                        if (c == 2) textBox2.Text = (countWin[1]).ToString();
+
+                    }
+                }
+
+                //ничья
+                if (CheckMap())
+                {
+                    MessageBox.Show("Нет победителя");
+                    ClearMap();
+                }
                 
         }
-
-        public void drawMap(int[,] Map)
+        
+        //проверка на пустые клетки(заполненность поля)
+        private static bool CheckMap()
         {
-            int size = Map.GetLength(0);
-            
-            Graphics g = this.CreateGraphics();
-            for (int i = 50; i <= 50 + size * 50; i+=50)
+            for (int i = 0; i < 10; i++)
             {
-                g.DrawLine(new Pen(Color.Black, 2f), i, xstart, i, 550);
-                g.DrawLine(new Pen(Color.Black, 2f), 550, i, ystart, i);
+                for (int j = 0; j < 10; j++)
+                {
+                    if (bigMap[i, j] == 0) return false;
+                }
             }
+
+            return true;
         }
+
+        //Очистить поле, подготовиться к следующей игре 
+        private void ClearMap()
+        {
+             
+            for (var i = 0; i < 10; i++) 
+            {
+                for (var j = 0; j < 10; j++)
+                {
+                    bigMap[i, j] = 0;
+                }
+            }
+            
+            isPlaying = false;
+            turn = true;
+            button1.Text = "Играсть снова";
+            button1.BackColor = Color.Gold;
+        }
+        
         
         // проверка победителя 
         private static bool checkWin(int c)
@@ -147,11 +193,24 @@ namespace крестики_нолики
         {
             int len = 5;
             for (int i = 0; i < len; i++) {              // ползём по проверяемой линии
+                
+                if (bigMap[(y + i * vy), (x + i * vx)] == c)
+                {
+                    winComb[i, 0] = (y + i * vy);
+                    winComb[i, 1] = (x + i * vx);
+                }
+                
                 if (bigMap[(y + i * vy),(x + i * vx)] != c) return false;   // проверим одинаковые-ли символы в ячейках
             }
             return true;
         }
-    }
 
-    
+        private void button1_Click(object sender, EventArgs e)
+        {
+            isPlaying = true;
+            button1.Text = "Идет игра";
+            button1.BackColor = Color.Chartreuse;
+            Invalidate();
+        }
+    }
 }
